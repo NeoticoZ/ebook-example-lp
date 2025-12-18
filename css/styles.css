@@ -1,0 +1,271 @@
+/**
+ * E-book Landing Page - Custom Styles
+ * Production-ready CSS with accessibility and performance in mind
+ */
+
+/* ============================================
+   CUSTOM PROPERTIES (Design Tokens)
+   ============================================ */
+:root {
+  --color-primary: #059669;
+  --color-primary-hover: #047857;
+  --color-secondary: #0d9488;
+  --color-accent: #fbbf24;
+  --color-dark: #1e293b;
+  --color-light: #f0fdf4;
+  --color-slate-900: #0f172a;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* ============================================
+   ACCESSIBILITY: Skip Link
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   ACCESSIBILITY: Focus States
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   3D BOOK STYLES
+   ============================================ */
+.book-container {
+  perspective: 1000px;
+}
+
+.book {
+  width: 220px;
+  height: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-30deg) rotateX(5deg);
+  transition: transform var(--transition-slow);
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.book:hover {
+  transform: rotateY(-15deg) rotateX(0deg) scale(1.02);
+}
+
+.book-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.front {
+  background: linear-gradient(135deg, #059669 0%, #065f46 100%);
+  transform: translateZ(25px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  color: white;
+  border-radius: 4px 12px 12px 4px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.back {
+  background-color: #065f46;
+  transform: rotateY(180deg) translateZ(25px);
+  border-radius: 12px 4px 4px 12px;
+}
+
+.left {
+  width: 50px;
+  height: 100%;
+  background: var(--color-primary-hover);
+  transform: rotateY(-90deg) translateZ(25px);
+  border-radius: 4px 0 0 4px;
+}
+
+.pages {
+  width: 48px;
+  height: 96%;
+  background: #f8fafc;
+  transform: rotateY(-90deg) translateZ(24px);
+  top: 2%;
+  position: absolute;
+  background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px);
+  background-size: 2px 100%;
+}
+
+/* ============================================
+   BLOB ANIMATIONS
+   ============================================ */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* ============================================
+   FORM FLOATING LABEL
+   ============================================ */
+.floating-input:focus ~ label,
+.floating-input:not(:placeholder-shown) ~ label {
+  top: -0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  background-color: white;
+  padding: 0 4px;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) #f1f1f1;
+}
+
+/* ============================================
+   HONEYPOT (Anti-spam)
+   ============================================ */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* ============================================
+   LOADING SPINNER
+   ============================================ */
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   REDUCED MOTION PREFERENCES
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-blob,
+  .animate-bounce,
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+  }
+
+  .book {
+    transform: rotateY(-20deg) rotateX(3deg);
+  }
+
+  .book:hover {
+    transform: rotateY(-20deg) rotateX(3deg);
+  }
+}
+
+/* ============================================
+   UTILITY: Screen Reader Only
+   ============================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
