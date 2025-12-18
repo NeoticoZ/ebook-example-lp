@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberdade Financeira em 12 Meses - Download Gratuito</title>
+    <meta name="description" content="Baixe o guia definitivo para conquistar sua liberdade financeira em apenas 12 meses.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669', // Emerald 600
+                        primaryHover: '#047857', // Emerald 700
+                        secondary: '#0D9488', // Teal 600
+                        accent: '#FBBF24', // Amber 400
+                        dark: '#1E293B',
+                        light: '#F0FDF4',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* Custom 3D Book Styles */
+        .book-container {
+            perspective: 1000px;
+        }
+        
+        .book {
+            width: 220px;
+            height: 320px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(-30deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+            box-shadow: 20px 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .book:hover {
+            transform: rotateY(-15deg) rotateX(0deg) scale(1.02);
+        }
+
+        .book-face {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .front {
+            background: linear-gradient(135deg, #059669 0%, #065f46 100%);
+            transform: translateZ(25px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            color: white;
+            border-radius: 4px 12px 12px 4px;
+            border-left: 4px solid #FBBF24;
+        }
+
+        .back {
+            background-color: #065f46;
+            transform: rotateY(180deg) translateZ(25px);
+            border-radius: 12px 4px 4px 12px;
+        }
+
+        .left {
+            width: 50px;
+            height: 100%;
+            background: #047857;
+            transform: rotateY(-90deg) translateZ(25px);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .pages {
+            width: 48px;
+            height: 96%;
+            background: #f8fafc;
+            transform: rotateY(-90deg) translateZ(24px);
+            top: 2%;
+            position: absolute;
+            background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px);
+            background-size: 2px 100%;
+        }
+
+        /* Blobs Animation */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* Form Floating Label */
+        .floating-input:focus ~ label,
+        .floating-input:not(:placeholder-shown) ~ label {
+            top: -0.75rem;
+            font-size: 0.75rem;
+            color: #059669;
+            background-color: white;
+            padding: 0 4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #059669;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-900 bg-[#F8FAFC] min-h-screen selection:bg-emerald-200 selection:text-emerald-900 overflow-x-hidden">
+
+    <!-- Header/Hero Section -->
+    <section class="relative pt-8 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+        <!-- Background Decor (Simplified and lighter) -->
+        <div class="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-white to-emerald-50/50 pointer-events-none z-0"></div>
+        <div class="absolute top-0 -left-4 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-blob z-0"></div>
+        <div class="absolute top-0 -right-4 w-96 h-96 bg-amber-100 rounded-full mix-blend-multiply filter blur-[100px] opacity-40 animate-blob animation-delay-2000 z-0"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                
+                <!-- Left Column (Content + Mockup) -->
+                <!-- CHANGED: Remove 'order-2' so this comes FIRST on mobile naturally -->
+                <div class="w-full lg:w-3/5 text-center lg:text-left">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-sm font-bold mb-6 border border-emerald-200 shadow-sm ring-2 ring-emerald-100/50">
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-600 mr-2 animate-pulse"></span>
+                        GRÁTIS POR TEMPO LIMITADO
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900 mb-4">
+                        Conquiste sua <span class="text-primary relative whitespace-nowrap">
+                            Liberdade Financeira
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-amber-400 opacity-80" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.00025 6.99997C25.7501 2.49999 92.0003 -3.49999 198 3.5" stroke="currentColor" stroke-width="3"/></svg>
+                        </span> em 12 Meses
+                    </h1>
+                    
+                    <p class="text-xl text-slate-700 mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
+                        O guia definitivo para sair das dívidas, multiplicar sua renda e construir um patrimônio sólido sem abrir mão da sua qualidade de vida.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-10 mb-10">
+                        <!-- 3D Book Mockup -->
+                        <div class="book-container group cursor-pointer transform scale-90 sm:scale-100">
+                            <div class="book">
+                                <div class="book-face front shadow-2xl">
+                                    <div class="flex flex-col h-full border-2 border-white/20 rounded p-5 bg-gradient-to-br from-emerald-600 to-emerald-800">
+                                        <div>
+                                            <p class="text-xs text-emerald-100 uppercase tracking-widest mb-3 font-bold opacity-80">Guia Prático</p>
+                                            <h3 class="font-serif text-3xl font-bold leading-tight mb-1 text-white drop-shadow-md">Liberdade Financeira</h3>
+                                            <p class="text-xl text-emerald-50 font-medium">Em 12 Meses</p>
+                                        </div>
+                                        <div class="mt-auto text-center">
+                                            <div class="w-14 h-14 bg-white/10 rounded-full mx-auto mb-3 flex items-center justify-center border border-white/20 backdrop-blur-sm">
+                                                <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+                                            </div>
+                                            <p class="text-[10px] font-bold tracking-wider text-white uppercase">Edição Definitiva</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pages bg-white border-r border-gray-200"></div>
+                                <div class="left flex items-center justify-center bg-emerald-900">
+                                    <span class="transform rotate-90 text-white/90 font-bold text-sm tracking-widest whitespace-nowrap">FINANÇAS</span>
+                                </div>
+                                <div class="book-face back bg-emerald-800"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bullet Points -->
+                        <ul class="space-y-5 text-left bg-white/50 p-6 rounded-xl border border-emerald-100 backdrop-blur-sm">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-emerald-600 flex items-center justify-center mr-3 mt-0.5 shadow-md shadow-emerald-200">
+                                    <i data-lucide="check" class="h-3.5 w-3.5 text-white stroke-[3px]"></i>
+                                </div>
+                                <span class="text-slate-800 font-medium">Método validado de organização</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-emerald-600 flex items-center justify-center mr-3 mt-0.5 shadow-md shadow-emerald-200">
+                                    <i data-lucide="check" class="h-3.5 w-3.5 text-white stroke-[3px]"></i>
+                                </div>
+                                <span class="text-slate-800 font-medium">Investimentos para iniciantes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-6 w-6 rounded-full bg-emerald-600 flex items-center justify-center mr-3 mt-0.5 shadow-md shadow-emerald-200">
+                                    <i data-lucide="check" class="h-3.5 w-3.5 text-white stroke-[3px]"></i>
+                                </div>
+                                <span class="text-slate-800 font-medium">Planilha automática inclusa</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column (Form) -->
+                <!-- CHANGED: Removed order classes so it falls naturally SECOND on mobile -->
+                <div class="w-full lg:w-2/5 mt-4 lg:mt-0" id="capture-form-section">
+                    <div class="bg-white rounded-2xl shadow-2xl shadow-emerald-900/10 border border-slate-100 p-6 sm:p-8 relative overflow-hidden">
+                        <!-- Decor line -->
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary"></div>
+                        
+                        <div class="text-center mb-8 mt-2">
+                            <h2 class="text-2xl font-extrabold text-slate-900">Baixe Agora Gratuitamente</h2>
+                            <p class="text-sm text-slate-600 mt-2 font-medium">Preencha para receber no seu e-mail</p>
+                        </div>
+
+                        <form id="mainForm" class="space-y-5" novalidate>
+                            <div class="relative group">
+                                <input type="text" id="name" name="name" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary peer placeholder-transparent transition-colors" placeholder="Seu Nome" required />
+                                <label for="name" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">Seu Nome Completo</label>
+                                <p class="text-red-600 text-xs mt-1 hidden error-msg font-bold">Por favor, insira seu nome.</p>
+                            </div>
+
+                            <div class="relative group">
+                                <input type="email" id="email" name="email" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary peer placeholder-transparent transition-colors" placeholder="Seu E-mail" required />
+                                <label for="email" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">Seu Melhor E-mail</label>
+                                <p class="text-red-600 text-xs mt-1 hidden error-msg font-bold">Por favor, insira um e-mail válido.</p>
+                            </div>
+
+                            <div class="relative group">
+                                <input type="tel" id="whatsapp" name="whatsapp" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary peer placeholder-transparent transition-colors" placeholder="WhatsApp" maxlength="15" required />
+                                <label for="whatsapp" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">WhatsApp (DDD + Número)</label>
+                                <p class="text-red-600 text-xs mt-1 hidden error-msg font-bold">Número inválido.</p>
+                            </div>
+
+                            <div class="flex items-start py-1">
+                                <div class="flex items-center h-5">
+                                    <input id="terms" name="terms" type="checkbox" class="w-4 h-4 border border-slate-300 rounded bg-slate-50 focus:ring-3 focus:ring-primary/30 text-primary cursor-pointer" required>
+                                </div>
+                                <label for="terms" class="ml-2 text-xs text-slate-600 cursor-pointer hover:text-slate-800 transition">Concordo em receber comunicações e aceito a Política de Privacidade.</label>
+                            </div>
+                            <p class="text-red-600 text-xs hidden error-msg font-bold" id="termsError">Você precisa aceitar os termos.</p>
+
+                            <button type="submit" class="group relative w-full flex justify-center py-4 px-4 border border-transparent text-base font-bold rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-4 focus:ring-emerald-500/30 shadow-lg shadow-emerald-600/30 transition-all duration-200 overflow-hidden active:scale-[0.98]">
+                                <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                                <span class="relative flex items-center tracking-wide">
+                                    QUERO MEU E-BOOK GRÁTIS
+                                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                                </span>
+                            </button>
+
+                            <div class="flex items-center justify-center gap-6 pt-3 border-t border-slate-100">
+                                <div class="flex items-center gap-1.5 text-[11px] text-slate-500 uppercase tracking-wide font-semibold">
+                                    <i data-lucide="lock" class="w-3 h-3 text-emerald-500"></i> Dados seguros
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[11px] text-slate-500 uppercase tracking-wide font-semibold">
+                                    <i data-lucide="shield-check" class="w-3 h-3 text-emerald-500"></i> Sem SPAM
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Success State (Hidden by default) -->
+                        <div id="successState" class="hidden text-center py-16">
+                            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce shadow-sm">
+                                <i data-lucide="check" class="w-10 h-10 text-emerald-600 stroke-[3px]"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-3">Parabéns!</h3>
+                            <p class="text-slate-600 text-base mb-6 font-medium">Seu e-book foi enviado para o seu e-mail.</p>
+                            <div class="bg-amber-50 text-amber-800 text-xs p-3 rounded-lg inline-block border border-amber-100">
+                                <p>⚠️ Verifique também sua caixa de <strong>SPAM</strong> ou <strong>Promoções</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Bar -->
+    <section class="border-b border-slate-200 bg-white py-10">
+        <div class="container mx-auto px-4">
+            <p class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest mb-8">
+                Junte-se a mais de <span id="downloadCounter" class="text-emerald-600 font-extrabold text-lg">0</span> leitores
+            </p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                <div class="flex items-center gap-2 font-serif font-bold text-2xl text-slate-800"><i data-lucide="briefcase" class="w-6 h-6 text-emerald-600"></i> Forbes</div>
+                <div class="flex items-center gap-2 font-serif font-bold text-2xl text-slate-800"><i data-lucide="trending-up" class="w-6 h-6 text-emerald-600"></i> Exame</div>
+                <div class="flex items-center gap-2 font-serif font-bold text-2xl text-slate-800"><i data-lucide="newspaper" class="w-6 h-6 text-emerald-600"></i> Valor</div>
+                <div class="flex items-center gap-2 font-serif font-bold text-2xl text-slate-800"><i data-lucide="tv" class="w-6 h-6 text-emerald-600"></i> CNN</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Will Learn -->
+    <section class="py-24 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">O que você vai descobrir</h2>
+                <p class="text-lg text-slate-600 leading-relaxed">Este não é apenas mais um livro teórico. É um plano de ação prático dividido em pilares fundamentais para sua evolução.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="target" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Mindset Milionário</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Como reprogramar seu cérebro para enxergar oportunidades onde a maioria vê problemas.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="scissors" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Eliminação de Dívidas</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">O método bola de neve para zerar suas contas atrasadas em tempo recorde.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="bar-chart-2" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Investimentos Seguros</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Comece a investir com pouco dinheiro em renda fixa e fundos imobiliários.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="wallet" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Renda Extra Inteligente</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">50 maneiras de monetizar suas habilidades atuais sem largar seu emprego.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="shield" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Proteção Patrimonial</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Como blindar seu dinheiro contra inflação e imprevistos econômicos.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-200 group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-6 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                        <i data-lucide="plane" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Estilo de Vida</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Como aproveitar a vida hoje enquanto constrói a riqueza de amanhã.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Section -->
+    <section class="py-20 bg-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="bg-[#0f172a] rounded-[2rem] p-8 md:p-16 relative overflow-hidden shadow-2xl">
+                <!-- Decor -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500 opacity-10 rounded-full transform translate-x-1/3 -translate-y-1/3 blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-400 opacity-5 rounded-full transform -translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12 relative z-10">
+                    <div class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 relative group">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-amber-400 rounded-full transform rotate-6 scale-105 transition-transform group-hover:rotate-12"></div>
+                        <div class="absolute inset-0 bg-slate-200 rounded-full overflow-hidden border-4 border-[#0f172a] z-10">
+                            <!-- Placeholder for Author Image -->
+                            <svg class="w-full h-full text-gray-400 bg-slate-800" fill="currentColor" viewBox="0 0 24 24"><path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        </div>
+                    </div>
+                    
+                    <div class="text-white flex-1 text-center md:text-left">
+                        <h4 class="text-emerald-400 font-bold tracking-widest uppercase text-xs mb-3">Sobre o Autor</h4>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-3 text-white">Roberto Finanças</h2>
+                        <p class="text-slate-300 text-lg mb-6 font-medium">Consultor Financeiro Certificado & Investidor</p>
+                        
+                        <p class="text-slate-400 mb-8 leading-relaxed max-w-2xl text-base">
+                            Com mais de 15 anos de experiência no mercado financeiro, Roberto já ajudou mais de 10.000 alunos a saírem do vermelho e começarem a investir. Sua missão é democratizar o acesso à inteligência financeira de forma simples e prática.
+                        </p>
+
+                        <div class="flex flex-wrap justify-center md:justify-start gap-8 md:gap-12 border-t border-slate-800 pt-8">
+                            <div>
+                                <span class="block text-4xl font-bold text-white mb-1">+15</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Anos de Exp.</span>
+                            </div>
+                            <div>
+                                <span class="block text-4xl font-bold text-white mb-1">+10k</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Alunos</span>
+                            </div>
+                            <div>
+                                <span class="block text-4xl font-bold text-white mb-1">+50M</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Investidos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Preview (Chapters) -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-slate-900 mb-4">O que você encontra lá dentro</h2>
+            <p class="text-center text-slate-600 mb-12 text-lg">Um conteúdo estruturado para você sair do zero aos seus primeiros investimentos.</p>
+            
+            <div class="bg-white rounded-2xl shadow-2xl shadow-slate-200/50 overflow-hidden border border-slate-100 ring-1 ring-slate-900/5">
+                <div class="divide-y divide-slate-100">
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">01</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">O Diagnóstico Financeiro: Onde você realmente está</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group bg-amber-50/40">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">02</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">Faxina Financeira: Cortando gastos invisíveis</span>
+                        <span class="text-[10px] font-black bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full ml-2 uppercase tracking-wider">🔥 Favorito</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">03</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">A Regra 50/30/20 na Prática</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">04</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">Reserva de Emergência: Sua blindagem contra o caos</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group bg-amber-50/40">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">05</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">Guia de Investimentos para Iniciantes</span>
+                        <span class="text-[10px] font-black bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full ml-2 uppercase tracking-wider">🔥 Essencial</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">06</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">Ações e FIIs: Vivendo de Renda Variável</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">07</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">Planejamento Tributário Simplificado</span>
+                    </div>
+                    <div class="p-6 flex items-center hover:bg-emerald-50/30 transition cursor-default group">
+                        <span class="w-10 text-xl font-black text-slate-200 group-hover:text-emerald-500 transition duration-300">08</span>
+                        <span class="flex-1 font-bold text-slate-800 text-lg">O Plano de 12 Meses: Cronograma de Execução</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center text-slate-900 mb-12">O que os leitores dizem</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg shadow-slate-200/40 border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex text-amber-400 mb-5">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-slate-700 mb-6 text-base italic font-medium leading-relaxed">"Eu achava que precisava ganhar muito para investir. O livro me mostrou que com R$ 100,00 já era possível começar. Hoje tenho minha reserva completa!"</p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full mr-4 overflow-hidden ring-2 ring-emerald-50">
+                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ana&backgroundColor=d1fae5" alt="Avatar" />
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900">Ana Silva</h5>
+                            <p class="text-xs text-emerald-600 font-bold uppercase tracking-wide">Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg shadow-slate-200/40 border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex text-amber-400 mb-5">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-slate-700 mb-6 text-base italic font-medium leading-relaxed">"Simples, direto e sem 'economês'. O capítulo sobre eliminação de dívidas salvou meu casamento. Recomendo para todo mundo."</p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full mr-4 overflow-hidden ring-2 ring-emerald-50">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos&backgroundColor=d1fae5" alt="Avatar" />
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900">Carlos Mendes</h5>
+                            <p class="text-xs text-emerald-600 font-bold uppercase tracking-wide">Engenheiro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg shadow-slate-200/40 border border-slate-100 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex text-amber-400 mb-5">
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        <i data-lucide="star-half" class="w-5 h-5 fill-current"></i>
+                    </div>
+                    <p class="text-slate-700 mb-6 text-base italic font-medium leading-relaxed">"Já li vários livros sobre o tema, mas esse guia prático superou todos pela clareza. A planilha inclusa é fantástica."</p>
+                    <div class="flex items-center mt-auto">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full mr-4 overflow-hidden ring-2 ring-emerald-50">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Julia&backgroundColor=d1fae5" alt="Avatar" />
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-slate-900">Júlia Costa</h5>
+                            <p class="text-xs text-emerald-600 font-bold uppercase tracking-wide">Empresária</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-emerald-900 relative overflow-hidden text-center">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-emerald-900 to-[#064e3b] opacity-90"></div>
+
+        <div class="container mx-auto px-4 relative z-10 max-w-3xl">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">Comece sua transformação hoje</h2>
+            <p class="text-emerald-100 mb-10 text-xl font-medium">Não deixe para amanhã a liberdade que você pode começar a construir agora. O download é imediato e gratuito.</p>
+            
+            <div class="bg-white/5 backdrop-blur-lg p-2 rounded-xl border border-white/10 inline-block w-full max-w-xl shadow-2xl">
+                <form id="bottomForm" class="flex flex-col sm:flex-row gap-2">
+                    <input type="email" placeholder="Digite seu melhor e-mail aqui..." class="flex-1 px-6 py-4 rounded-lg text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-amber-400 text-lg" required>
+                    <button type="button" onclick="scrollToTop()" class="px-8 py-4 bg-amber-400 text-amber-900 font-black rounded-lg hover:bg-amber-300 transition shadow-lg transform hover:scale-[1.02] text-lg whitespace-nowrap flex items-center justify-center gap-2">
+                        BAIXAR AGORA <i data-lucide="download" class="w-5 h-5"></i>
+                    </button>
+                </form>
+            </div>
+            <p class="text-emerald-200/70 text-sm mt-6 font-medium">Oferta gratuita disponível apenas até <span id="dateTarget" class="text-white font-bold underline decoration-amber-400"></span></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#022c22] py-12 text-slate-400 text-sm border-t border-white/5">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-white text-lg mb-1">Liberdade Financeira</p>
+                <p>&copy; 2024 Finanças 12 Meses. Todos os direitos reservados.</p>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-white transition font-medium">Política de Privacidade</a>
+                <a href="#" class="hover:text-white transition font-medium">Termos de Uso</a>
+                <a href="#" class="hover:text-white transition font-medium">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Exit Intent Popup -->
+    <div id="exitPopup" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-xl w-full mx-4 overflow-hidden transform scale-95 transition-transform duration-300 relative ring-1 ring-white/20">
+            <button onclick="closePopup()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 z-20 bg-slate-100 rounded-full p-2 hover:bg-slate-200 transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            
+            <div class="flex flex-col md:flex-row h-full">
+                <div class="bg-emerald-600 p-8 flex flex-col justify-center items-center text-white md:w-2/5 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500 to-emerald-700 z-0"></div>
+                    <div class="relative z-10 text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
+                            <i data-lucide="gift" class="w-8 h-8 text-white animate-bounce"></i>
+                        </div>
+                        <span class="font-black text-xl tracking-wider">BÔNUS<br>EXCLUSIVO</span>
+                    </div>
+                </div>
+                <div class="p-8 md:w-3/5 bg-white flex flex-col justify-center">
+                    <h3 class="text-2xl font-black text-slate-900 mb-2">Espere! Não vá embora...</h3>
+                    <p class="text-slate-600 text-base mb-8 leading-relaxed">Se você baixar o guia agora, vai ganhar também a <span class="font-bold text-emerald-600 bg-emerald-50 px-1 rounded">Planilha de Controle 2.0</span> totalmente configurada.</p>
+                    <button onclick="scrollToTop(); closePopup();" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl hover:bg-emerald-700 transition shadow-lg shadow-emerald-200 flex items-center justify-center gap-2 group">
+                        QUERO MEU KIT COMPLETO
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Set Dynamic Date for Urgency
+        const dateTarget = document.getElementById('dateTarget');
+        const today = new Date();
+        today.setDate(today.getDate() + 3); // Set to 3 days from now
+        dateTarget.textContent = today.toLocaleDateString('pt-BR');
+
+        // Scroll to Top Function
+        function scrollToTop() {
+            document.getElementById('capture-form-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Phone Masking
+        const phoneInput = document.getElementById('whatsapp');
+        phoneInput.addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // Form Validation & Submission
+        const form = document.getElementById('mainForm');
+        const inputs = form.querySelectorAll('input[required]');
+        const successState = document.getElementById('successState');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            // Simple validation
+            inputs.forEach(input => {
+                const errorMsg = input.parentElement.querySelector('.error-msg') || document.getElementById('termsError');
+                
+                if (!input.value || (input.type === 'checkbox' && !input.checked)) {
+                    isValid = false;
+                    input.classList.add('border-red-500');
+                    if(errorMsg) errorMsg.classList.remove('hidden');
+                } else if (input.type === 'email' && !input.value.includes('@')) {
+                    isValid = false;
+                    input.classList.add('border-red-500');
+                    if(errorMsg) errorMsg.classList.remove('hidden');
+                } else {
+                    input.classList.remove('border-red-500');
+                    if(errorMsg) errorMsg.classList.add('hidden');
+                }
+            });
+
+            if (isValid) {
+                // Simulate API call
+                const btn = form.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    form.style.display = 'none';
+                    successState.classList.remove('hidden');
+                    
+                    // Trigger Confetti
+                    var duration = 3 * 1000;
+                    var animationEnd = Date.now() + duration;
+                    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+                    function randomInRange(min, max) {
+                      return Math.random() * (max - min) + min;
+                    }
+
+                    var interval = setInterval(function() {
+                      var timeLeft = animationEnd - Date.now();
+
+                      if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                      }
+
+                      var particleCount = 50 * (timeLeft / duration);
+                      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                    }, 250);
+                }, 1500);
+            }
+        });
+
+        // Input focus remove error
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('border-red-500');
+                const errorMsg = this.parentElement.querySelector('.error-msg') || document.getElementById('termsError');
+                if(errorMsg) errorMsg.classList.add('hidden');
+            });
+        });
+
+        // Number Counter Animation
+        const counterElement = document.getElementById('downloadCounter');
+        const targetNumber = 15420;
+        let hasCounted = false;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasCounted) {
+                    hasCounted = true;
+                    let start = 0;
+                    const duration = 2000;
+                    const stepTime = Math.abs(Math.floor(duration / (targetNumber / 100))); 
+                    
+                    const timer = setInterval(() => {
+                        start += 120;
+                        counterElement.innerText = start.toLocaleString('pt-BR');
+                        if (start >= targetNumber) {
+                            counterElement.innerText = targetNumber.toLocaleString('pt-BR');
+                            clearInterval(timer);
+                        }
+                    }, stepTime);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(counterElement);
+
+        // Exit Intent Popup
+        const popup = document.getElementById('exitPopup');
+        let popupShown = false;
+
+        const showPopup = () => {
+            if (!popupShown) {
+                popup.classList.remove('pointer-events-none', 'opacity-0');
+                popup.querySelector('div').classList.remove('scale-95');
+                popup.querySelector('div').classList.add('scale-100');
+                popupShown = true;
+            }
+        };
+
+        const closePopup = () => {
+            popup.classList.add('pointer-events-none', 'opacity-0');
+            popup.querySelector('div').classList.add('scale-95');
+            popup.querySelector('div').classList.remove('scale-100');
+        };
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0) {
+                showPopup();
+            }
+        });
+
+        // Mobile check for exit intent (timer fallback since no mouseleave)
+        if(window.innerWidth < 768) {
+            setTimeout(() => {
+                // Only show if user hasn't scrolled much implies hesitation? 
+                // Or just simple timer for mobile
+                if(!popupShown) showPopup();
+            }, 45000); // 45 seconds
+        }
+
+    </script>
+</body>
+</html>
