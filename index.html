@@ -65,30 +65,8 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="./css/styles.css">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#059669',
-                        primaryHover: '#047857',
-                        secondary: '#0D9488',
-                        accent: '#FBBF24',
-                        dark: '#1E293B',
-                        light: '#F0FDF4',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
 
     <!-- Lucide Icons (versão fixa) -->
     <script src="https://unpkg.com/lucide@0.294.0" defer></script>
@@ -120,7 +98,7 @@
                     </div>
                     
                     <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900 mb-4">
-                        Conquiste sua <span class="text-primary relative whitespace-nowrap">
+                        Conquiste sua <span class="text-emerald-600 relative whitespace-nowrap">
                             Liberdade Financeira
                             <svg class="absolute w-full h-3 -bottom-1 left-0 text-amber-400 opacity-80" viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2.00025 6.99997C25.7501 2.49999 92.0003 -3.49999 198 3.5" stroke="currentColor" stroke-width="3"/></svg>
                         </span> em 12 Meses
@@ -186,7 +164,7 @@
                 <div class="w-full lg:w-2/5 mt-4 lg:mt-0" id="capture-form-section">
                     <div class="bg-white rounded-2xl shadow-2xl shadow-emerald-900/10 border border-slate-100 p-6 sm:p-8 relative overflow-hidden">
                         <!-- Decor line -->
-                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary"></div>
+                        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-600 to-teal-600"></div>
                         
                         <div class="text-center mb-8 mt-2">
                             <h2 class="text-2xl font-extrabold text-slate-900">Baixe Agora Gratuitamente</h2>
@@ -201,26 +179,26 @@
                             </div>
 
                             <div class="relative group">
-                                <input type="text" id="name" name="name" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary peer placeholder-transparent transition-colors" placeholder="Seu Nome" required aria-required="true" />
-                                <label for="name" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">Seu Nome Completo</label>
+                                <input type="text" id="name" name="name" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 peer placeholder-transparent transition-colors" placeholder="Seu Nome" required aria-required="true" />
+                                <label for="name" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-emerald-600 peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">Seu Nome Completo</label>
                                 <p class="text-red-600 text-xs mt-1 hidden error-msg font-bold" role="alert">Por favor, insira seu nome.</p>
                             </div>
 
                             <div class="relative group">
-                                <input type="email" id="email" name="email" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary peer placeholder-transparent transition-colors" placeholder="Seu E-mail" required />
-                                <label for="email" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">Seu Melhor E-mail</label>
+                                <input type="email" id="email" name="email" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 peer placeholder-transparent transition-colors" placeholder="Seu E-mail" required />
+                                <label for="email" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-emerald-600 peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">Seu Melhor E-mail</label>
                                 <p class="text-red-600 text-xs mt-1 hidden error-msg font-bold">Por favor, insira um e-mail válido.</p>
                             </div>
 
                             <div class="relative group">
-                                <input type="tel" id="whatsapp" name="whatsapp" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary peer placeholder-transparent transition-colors" placeholder="WhatsApp" maxlength="15" required />
-                                <label for="whatsapp" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-primary peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">WhatsApp (DDD + Número)</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="floating-input block px-4 py-3.5 w-full text-slate-900 bg-slate-50 border border-slate-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:border-emerald-600 peer placeholder-transparent transition-colors" placeholder="WhatsApp" maxlength="15" required />
+                                <label for="whatsapp" class="absolute text-sm text-slate-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-transparent px-2 peer-focus:px-2 peer-focus:text-emerald-600 peer-focus:bg-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2 cursor-text font-medium rounded">WhatsApp (DDD + Número)</label>
                                 <p class="text-red-600 text-xs mt-1 hidden error-msg font-bold">Número inválido.</p>
                             </div>
 
                             <div class="flex items-start py-1">
                                 <div class="flex items-center h-5">
-                                    <input id="terms" name="terms" type="checkbox" class="w-4 h-4 border border-slate-300 rounded bg-slate-50 focus:ring-3 focus:ring-primary/30 text-primary cursor-pointer" required>
+                                    <input id="terms" name="terms" type="checkbox" class="w-4 h-4 border border-slate-300 rounded bg-slate-50 focus:ring-3 focus:ring-emerald-600/30 text-emerald-600 cursor-pointer" required>
                                 </div>
                                 <label for="terms" class="ml-2 text-xs text-slate-600 cursor-pointer hover:text-slate-800 transition">Concordo em receber comunicações e aceito a Política de Privacidade.</label>
                             </div>
